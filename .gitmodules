@@ -1,0 +1,6 @@
+[submodule "memo"]
+	path = memo
+	url = https://github.com/MO-RISE/memo.git
+[submodule "brefv-spec"]
+	path = brefv-spec
+	url = https://github.com/MO-RISE/brefv.git
