@@ -37,3 +37,6 @@ jobs:
     - name: Run pylint
       run: |
         pylint --extension-pkg-allow-list=pycluon  main.py
+    - name: Run pytest
+      run: |
+        python -m pytest tests
