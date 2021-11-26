@@ -1,0 +1,6 @@
+{
+    "tests/test_pipeline.py::test_propeller_message_1": "/observations/propeller/0",
+    "tests/test_pipeline.py::test_propeller_message_2": "{\"sent_at\": \"1970-01-01T00:00:00\", \"message_type\": \"https://mo-rise.github.io/brefv/0.1.0/messages/observations/propeller.json\", \"message\": {\"sensor_id\": \"ENGINE\", \"rpm\": 3093.75}}",
+    "tests/test_pipeline.py::test_rudder_message_1": "/observations/rudder/0",
+    "tests/test_pipeline.py::test_rudder_message_2": "{\"sent_at\": \"1970-01-01T00:00:00\", \"message_type\": \"https://mo-rise.github.io/brefv/0.1.0/messages/observations/rudder.json\", \"message\": {\"sensor_id\": \"YDRA-01\", \"angle\": 1.5068790011940651}}"
+}

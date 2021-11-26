@@ -1,0 +1,11 @@
+version: '3'
+services:
+
+  broker:
+    image: emqx/emqx
+    environment:
+      - EMQX_LOG__LEVEL=debug
+      - EMQX_ACL_NOMATCH=allow
+      - EMQX_ACL_FILE=etc/not-available.conf
+    ports:
+      - 1883:1883
