@@ -13,9 +13,9 @@ from paho.mqtt.client import Client as MQTT
 from pycluon import OD4Session, Envelope as cEnvelope
 from pycluon.importer import import_odvd
 
-from jasmine import NMEA2000Parser
-from jasmine.utils import filter_on_pgn, deep_get
-from jasmine.exceptions import MultiPacketInProcessError
+from marulc import NMEA2000Parser
+from marulc.utils import filter_on_pgn, deep_get
+from marulc.exceptions import MultiPacketInProcessError
 
 from brefv.envelope import Envelope
 from brefv.messages.observations.rudder import Rudder
@@ -58,7 +58,7 @@ parser = NMEA2000Parser()
 
 
 def unpack_n2k_frame(envelope: cEnvelope):
-    """Extract an n2k frame from an envelope and unpack it using jasmine"""
+    """Extract an n2k frame from an envelope and unpack it using marulc"""
     try:
         frame = memo.memo_raw_NMEA2000()
         frame.ParseFromString(envelope.serialized_data)
@@ -78,7 +78,7 @@ unpacked = entrypoint.map(unpack_n2k_frame).filter(not_empty)
 
 ## Rudder
 def pgn127245_to_brefv(msg):
-    """Converting a jasmine dict to a brefv messages and packaging it into a a brefv construct"""
+    """Converting a marulc dict to a brefv messages and packaging it into a a brefv construct"""
     n2k_id = str(deep_get(msg, "Fields", "instance"))
 
     if sensor_id := RUDDER_CONFIG.get(n2k_id):
@@ -108,7 +108,7 @@ brefv_rudder = (
 
 ## Propeller (Using engine data for now...)
 def pgn127488_to_brefv(msg):
-    """Converting a jasmine dict to a brefv messages and packaging it into a a brefv construct"""
+    """Converting a marulc dict to a brefv messages and packaging it into a a brefv construct"""
     n2k_id = str(deep_get(msg, "Fields", "instance"))
 
     if sensor_id := PROPELLER_CONFIG.get(n2k_id):

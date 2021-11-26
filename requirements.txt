@@ -2,6 +2,6 @@ pycluon
 paho-mqtt
 streamz
 environs
-morise-jasmine
+marulc
 pydantic
 datamodel-code-generator
