@@ -31,6 +31,7 @@ MQTT_BROKER_PORT = env.int("MQTT_BROKER_PORT", 1883)
 MQTT_CLIENT_ID = env("MQTT_CLIENT_ID", None)
 MQTT_TRANSPORT = env("MQTT_TRANSPORT", "tcp")
 MQTT_USER = env("MQTT_USER", None)
+MQTT_TLS = env.bool("MQTT_TLS", False)
 MQTT_PASSWORD = env("MQTT_PASSWORD", None)
 MQTT_BASE_TOPIC = env("MQTT_BASE_TOPIC", "/test/test")
 
@@ -45,7 +46,8 @@ memo = import_odvd(THIS_DIR / "memo" / "memo.odvd")
 
 mq = MQTT(client_id=MQTT_CLIENT_ID, transport=MQTT_TRANSPORT)
 mq.username_pw_set(MQTT_USER, MQTT_PASSWORD)
-mq.tls_set()
+if MQTT_TLS:
+    mq.tls_set()
 mq.connect(MQTT_BROKER_HOST, MQTT_BROKER_PORT)
 
 # Not empty filter
