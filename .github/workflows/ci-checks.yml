@@ -15,6 +15,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+      with:
+        submodules: true
     - name: Set up Python 3
       uses: actions/setup-python@v2
       with:
@@ -24,6 +26,11 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements_dev.txt
         pip install -r requirements.txt
+    - name: Generate brefv code
+      run: |
+        mkdir brefv
+        datamodel-codegen --input brefv-spec/envelope.json --input-file-type jsonschema --output brefv/envelope.py
+        datamodel-codegen --input brefv-spec/messages --input-file-type jsonschema  --reuse-model --output brefv/messages
     - name: Run black
       run: |
         black --check main.py
